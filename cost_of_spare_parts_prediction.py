@@ -103,4 +103,4 @@ print(f"User input and predicted total cost saved to {output_file}")
 
 
 # Step 8: Save the model for future use
-joblib.dump(model, 'spare_parts_model.joblib')
+joblib.dump(model, 'cost_of_spare_parts_model.joblib')
