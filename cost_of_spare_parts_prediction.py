@@ -89,7 +89,7 @@ user_prediction = model.predict(user_input_scaled)
 predicted_total_cost = user_prediction[0]
 
 # Provide the predicted total cost of spare parts to the user
-print(f"Predicted Total Cost of Spare Parts: ${predicted_total_cost}")
+print(f"Predicted Total Cost of Spare Parts:  {predicted_total_cost}")
 
 # Step 7: Save the user input and predicted total cost to an output file
 output_file = 'predicted_total_cost.txt'
@@ -97,10 +97,11 @@ with open(output_file, 'w') as f:
     f.write("User Input:\n")
     for feature, value in zip(selected_features, user_input[0]):
         f.write(f"{feature}: {value}\n")
-    f.write(f"\nPredicted Total Cost of Spare Parts: {predicted_total_cost}\n")
+    f.write(
+        f"\nPredicted Total Cost of Spare Parts: $ {predicted_total_cost}\n")
 
 print(f"User input and predicted total cost saved to {output_file}")
 
 
 # Step 8: Save the model for future use
-joblib.dump(model, 'cost_of_spare_parts_model.joblib')
+joblib.dump(model, 'spare_parts_model.joblib')
