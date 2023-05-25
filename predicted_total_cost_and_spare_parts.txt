@@ -1,0 +1,6 @@
+User Input:
+vehicle_type: c
+brand: a
+model: r
+
+Predicted Spare Parts and Cost: {'oil_filter': 1, 'engine_oil': 1, 'dust_and_pollen_filter': 1}

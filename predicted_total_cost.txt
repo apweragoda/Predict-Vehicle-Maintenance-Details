@@ -1,0 +1,9 @@
+User Input:
+vehicle_type: 0
+brand: 1
+model: 2
+engine_type: 0
+make_year: 2016
+mileage: 28798
+
+Predicted Total Cost of Spare Parts: 3688.11
