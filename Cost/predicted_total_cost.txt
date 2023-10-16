@@ -1,0 +1,9 @@
+User Input:
+vehicle_type: 2
+brand: 2
+model: 31
+engine_type: 3
+make_year: 2014
+mileage: 123456
+
+Predicted Total Cost of Spare Parts: $ 10690.5
