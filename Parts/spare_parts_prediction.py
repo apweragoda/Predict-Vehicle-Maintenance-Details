@@ -1,10 +1,9 @@
+import joblib
 import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-import joblib
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 # Step 1: Load and preprocess the data
 data = pd.read_csv('vehicle_maintenance_records_updated.csv')
@@ -13,7 +12,8 @@ data = pd.read_csv('vehicle_maintenance_records_updated.csv')
 selected_features = ['vehicle_type', 'brand',
                      'model', 'engine_type', 'make_year', 'mileage']
 
-target_feature = ['oil_filter', 'engine_oil', 'washer_plug_drain', 'dust_and_pollen_filter', 'air_clean_filter', 'fuel_filter', 'spark_plug',
+target_feature = ['oil_filter', 'engine_oil', 'washer_plug_drain', 'dust_and_pollen_filter', 'air_clean_filter',
+                  'fuel_filter', 'spark_plug',
                   'brake_fluid', 'brake_and_clutch_oil', 'transmission_fluid', 'brake_pads', 'clutch', 'coolant']
 
 # Select relevant features and target variable
@@ -87,11 +87,9 @@ print("Predicted Spare Parts:")
 for feature, value in predicted_spare_parts.items():
     print(f"{feature}: {value}")
 
-
 print("Remaining Mileage:")
 for feature, mileage in remaining_mileage.items():
     print(f"{feature}: {mileage} miles")
-
 
 # Step 6: Save the user input and predicted total cost to an output file
 output_file = 'predicted_total_cost_and_spare_parts.txt'

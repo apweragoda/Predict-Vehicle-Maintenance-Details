@@ -1,10 +1,10 @@
-import pandas as pd
+import joblib
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
-import joblib
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 # Step 1: Load and preprocess the data
 data = pd.read_csv('vehicle_maintenance_records_updated.csv')
@@ -81,7 +81,6 @@ for feature in target_feature:
         predicted_spare_parts[feature] = 1
         spare_part_costs[feature] = prediction
 
-
 user_input_scaled = scaler.transform(user_input)
 
 # Step 6: Make predictions for user input data
@@ -101,7 +100,6 @@ with open(output_file, 'w') as f:
         f"\nPredicted Total Cost of Spare Parts: $ {predicted_total_cost}\n")
 
 print(f"User input and predicted total cost saved to {output_file}")
-
 
 # Step 8: Save the model for future use
 joblib.dump(model, 'spare_parts_model.joblib')

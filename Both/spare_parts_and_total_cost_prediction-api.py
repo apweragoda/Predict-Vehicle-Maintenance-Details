@@ -1,17 +1,15 @@
-import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+import pandas as pd
+from flask import Flask, jsonify, request
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import accuracy_score, mean_squared_error
-import joblib
-from flask import Flask, jsonify, request
-import json
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 app = Flask(__name__)
 
 # Step 1: Load and preprocess the data
-data = pd.read_csv('vehicle_maintenance_records_updated.csv')
+data = pd.read_csv('vehicle_maintenance_records_latest.csv')
 
 # Step 2: Feature engineering and data preparation
 selected_features = ['vehicle_type', 'brand',
@@ -53,6 +51,7 @@ mse = mean_squared_error(y_test, y_pred)
 rmse = np.sqrt(mse)
 print(f"Root Mean Squared Error: {rmse}")
 
+
 # Endpoint for predicting the spare parts and remaining mileage
 @app.route('/predictCost', methods=['POST'])
 def predict_spare_parts_cost():
@@ -89,7 +88,6 @@ def predict_spare_parts_cost():
         return jsonify({'error': str(e)}), 500
 
 
-
 @app.route('/predict', methods=['POST'])
 def predict_spare_parts():
     # Get the user input from the request body as JSON
@@ -99,9 +97,10 @@ def predict_spare_parts():
 
     # Step 2: Feature engineering and data preparation
     selected_features = ['vehicle_type', 'brand',
-                        'model', 'engine_type', 'make_year', 'mileage']
-    target_feature = ['mileage_range', 'oil_filter', 'engine_oil', 'washer_plug_drain', 'dust_and_pollen_filter', 'air_clean_filter', 'fuel_filter', 'spark_plug',
-                    'brake_fluid', 'brake_and_clutch_oil', 'transmission_fluid', 'brake_pads', 'clutch', 'coolant']
+                         'model', 'engine_type', 'make_year', 'mileage']
+    target_feature = ['mileage_range', 'oil_filter', 'engine_oil', 'washer_plug_drain', 'dust_and_pollen_filter',
+                      'air_clean_filter', 'fuel_filter', 'spark_plug',
+                      'brake_fluid', 'brake_and_clutch_oil', 'transmission_fluid', 'brake_pads', 'clutch', 'coolant']
 
     # Select relevant features and target variable
     df = data[selected_features + target_feature].copy()
@@ -189,7 +188,6 @@ def predict_spare_parts():
         return jsonify(response)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 
 if __name__ == '__main__':

@@ -1,17 +1,15 @@
-import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+import pandas as pd
+from flask import Flask, jsonify, request
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
-import joblib
-from flask import Flask, jsonify, request
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 app = Flask(__name__)
 
 # Step 1: Load and preprocess the data
-data = pd.read_csv('vehicle_maintenance_records_updated.csv')
-
+data = pd.read_csv('vehicle_maintenance_records_latest.csv')
 
 # Step 2: Feature engineering and data preparation
 selected_features = ['vehicle_type', 'brand',
@@ -52,6 +50,7 @@ y_pred = model.predict(X_test_scaled)
 mse = mean_squared_error(y_test, y_pred)
 rmse = np.sqrt(mse)
 print(f"Root Mean Squared Error: {rmse}")
+
 
 # Endpoint for predicting the cost of spare parts
 
